@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #eef2f5;
+  color: #263238;
+}
+
+.contenedor {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+.superior {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: start;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #d5dde3;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+  margin: 16px 0 8px;
+  font-size: 15px;
+  color: #0d47a1;
+}
+
+.panel h2:first-child { margin-top: 0; }
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.fila { display: flex; gap: 12px; }
+
+input, select {
+  padding: 6px 8px;
+  border: 1px solid #aab7c0;
+  border-radius: 6px;
+  font: inherit;
+  background: white;
+}
+
+input[type="number"] { width: 60px; }
+.controles > select { width: 100%; }
+
+button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 10px;
+  background: #0d47a1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover { background: #1565c0; }
+
+#mensaje { margin: 10px 0 0; color: #b71c1c; font-weight: 600; font-size: 14px; }
+
+.mapa { text-align: center; }
+
+canvas {
+  max-width: 100%;
+  border: 1px solid #cfd8dc;
+}
+
+.leyenda {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.leyenda i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  border: 1px solid #607d8b;
+  vertical-align: middle;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 9px;
+  text-align: center;
+  border-bottom: 1px solid #e3e8ec;
+}
+
+th { background: #f3f6f8; font-size: 14px; }
+
+pre {
+  margin: 12px 0 0;
+  padding: 10px;
+  background: #f5f7f9;
+  border-radius: 6px;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 760px) {
+  .superior { grid-template-columns: 1fr; }
+}

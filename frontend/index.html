@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robot de sanitización hospitalaria</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="contenedor">
+    <div class="superior">
+      <div class="panel controles">
+        <h2>Hospital</h2>
+        <select id="escenario"></select>
+
+        <h2>Estado inicial</h2>
+        <div class="fila">
+          <label>x <input id="ix" type="number" min="0"></label>
+          <label>y <input id="iy" type="number" min="0"></label>
+        </div>
+        <label>Orientación
+          <select id="io">
+            <option value="N">Norte</option>
+            <option value="E">Este</option>
+            <option value="S">Sur</option>
+            <option value="O">Oeste</option>
+          </select>
+        </label>
+
+        <h2>Meta</h2>
+        <div class="fila">
+          <label>x <input id="mx" type="number" min="0"></label>
+          <label>y <input id="my" type="number" min="0"></label>
+        </div>
+
+        <button id="ejecutar">Ejecutar búsqueda</button>
+        <p id="mensaje"></p>
+      </div>
+
+      <div class="panel mapa">
+        <canvas id="lienzo"></canvas>
+        <div class="leyenda">
+          <span><i style="background:white"></i>Pasillo</span>
+          <span><i style="background:orange"></i>Congestión</span>
+          <span><i style="background:gray"></i>Muro</span>
+          <span><i style="background:green"></i>Inicio</span>
+          <span><i style="background:red"></i>Meta</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Resultados</h2>
+      <table>
+        <thead>
+          <tr><th>Algoritmo</th><th>Costo</th><th>Expandidos</th><th>Tiempo (ms)</th><th>Giros</th><th>Reversas</th></tr>
+        </thead>
+        <tbody id="cuerpo"></tbody>
+      </table>
+      <pre id="secuencia"></pre>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

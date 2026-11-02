@@ -1,0 +1,7 @@
+Escenario,Algoritmo,Costo,Expandidos,Tiempo (ms),Giros,Reversas
+Hospital General (10x10),A*,13,62,0.500,3,0
+Hospital General (10x10),UCS,13,160,1.357,3,0
+Clínica de Especialidades (12x8),A*,20,160,1.046,2,0
+Clínica de Especialidades (12x8),UCS,20,253,3.871,2,0
+Hospital Pediátrico (15x10),A*,23,171,1.361,4,0
+Hospital Pediátrico (15x10),UCS,23,361,2.457,4,0
