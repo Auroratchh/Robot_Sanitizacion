@@ -66,7 +66,7 @@ Todos los hospitales son de 10x10 y están definidos en `hospital_robot/escenari
 | Clave | Hospital | Inicio | Meta |
 |---|---|---|---|
 | `general` | Hospital General | (0, 0) Norte | (3, 7) |
-| `clinica` | Clínica de Especialidades | (0, 0) Este | (8, 7) |
+| `clinica` | Clínica de Especialidades | (0, 0) Este | (9, 5) |
 | `pediatrico` | Hospital Pediátrico | (0, 0) Este | (7, 7) |
 
 ### Resultados con los valores por defecto
@@ -75,8 +75,8 @@ Todos los hospitales son de 10x10 y están definidos en `hospital_robot/escenari
 |---|---|---|---|---|---|
 | General | A\* | 13 | 62 | 3 | 0 |
 | General | UCS | 13 | 160 | 3 | 0 |
-| Clínica | A\* | 19 | 137 | 4 | 0 |
-| Clínica | UCS | 19 | 255 | 4 | 0 |
+| Clínica | A\* | 15 | 15 | 1 | 0 |
+| Clínica | UCS | 15 | 192 | 1 | 0 |
 | Pediátrico | A\* | 19 | 130 | 3 | 0 |
 | Pediátrico | UCS | 19 | 244 | 3 | 0 |
 
@@ -89,6 +89,8 @@ Ambos algoritmos encuentran el mismo costo óptimo, A\* expande menos nodos grac
 ├── api.py                  API FastAPI y servidor del frontend
 ├── main.py                 Interfaz de línea de comandos
 ├── requirements.txt
+├── tests/
+│   └── test_busqueda.py    Pruebas unitarias
 ├── hospital_robot/
 │   ├── __init__.py
 │   ├── busqueda.py         A* y costo uniforme
@@ -145,6 +147,12 @@ python main.py --todos --csv resultados/tabla.csv --graficas graficas
 | `--todos` | Ejecuta los tres escenarios con sus valores por defecto |
 | `--csv ruta` | Exporta la tabla de resultados |
 | `--graficas carpeta` | Guarda un PNG por escenario (requiere matplotlib) |
+
+### Pruebas
+
+```bash
+python -m unittest discover -s tests -t .
+```
 
 ### API
 

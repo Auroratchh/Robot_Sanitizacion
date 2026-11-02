@@ -75,8 +75,8 @@ class PruebasBusqueda(unittest.TestCase):
 
     def test_cambiar_inicio_y_meta(self):
         esc = ESCENARIOS["clinica"]
-        r1 = a_estrella(ProblemaRuta(esc.mapa, Estado(0, 0, Orientacion.ESTE), (11, 5)))
-        r2 = a_estrella(ProblemaRuta(esc.mapa, Estado(11, 0, Orientacion.OESTE), (0, 3)))
+        r1 = a_estrella(ProblemaRuta(esc.mapa, Estado(0, 0, Orientacion.ESTE), (9, 5)))
+        r2 = a_estrella(ProblemaRuta(esc.mapa, Estado(9, 0, Orientacion.OESTE), (0, 3)))
         self.assertTrue(r1.exito and r2.exito)
         self.assertNotEqual(r1.costo, r2.costo)
 
