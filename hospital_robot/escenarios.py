@@ -74,14 +74,14 @@ ESCENARIOS: dict[str, Escenario] = {
         "clinica",
         _CLINICA,
         Estado(0, 0, Orientacion.ESTE),
-        (9, 5),
+        (8, 7),
         "Clínica con un pasillo principal y consultorios laterales.",
     ),
     "pediatrico": Escenario(
         "pediatrico",
         _PEDIATRICO,
-        Estado(0, 0, Orientacion.ESTE),
-        (7, 7),
+        Estado(4, 4, Orientacion.SUR),
+        (9, 8),
         "Hospital con corredor perimetral y zonas de alto tráfico.",
     ),
 }

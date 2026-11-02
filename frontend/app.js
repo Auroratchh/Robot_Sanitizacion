@@ -7,12 +7,15 @@ const lienzo = document.getElementById("lienzo");
 const ctx = lienzo.getContext("2d");
 let escenarios = [];
 let mapa = [];
+let rutaActual = null;
+let accionesActual = [];
+let pasoActual = 0;
 
 function leer(id) {
   return parseInt(document.getElementById(id).value, 10) || 0;
 }
 
-function dibujar(ruta) {
+function dibujar(ruta, robot) {
   const alto = mapa.length;
   const ancho = mapa[0].length;
   lienzo.width = MARGEN + ancho * TAM;
@@ -61,9 +64,22 @@ function dibujar(ruta) {
   );
   ctx.fillStyle = "red";
   ctx.fillRect(px(leer("mx")) + 8, py(leer("my")) + 8, TAM - 16, TAM - 16);
+
+  if (robot && ruta) {
+    const p = ruta[ruta.length - 1];
+    ctx.beginPath();
+    ctx.arc(px(p.x) + TAM / 2, py(p.y) + TAM / 2, TAM * 0.3, 0, Math.PI * 2);
+    ctx.fillStyle = "blue";
+    ctx.fill();
+    ctx.fillStyle = "white";
+    ctx.fillText(FLECHAS[p.o], px(p.x) + TAM / 2, py(p.y) + TAM / 2);
+  }
 }
 
 function limpiarResultados() {
+  rutaActual = null;
+  document.getElementById("siguiente").hidden = true;
+  document.getElementById("paso").textContent = "";
   document.getElementById("cuerpo").innerHTML = "";
   document.getElementById("secuencia").textContent = "";
   document.getElementById("mensaje").textContent = "";
@@ -89,6 +105,15 @@ function agrupar(acciones) {
     else grupos.push({ nombre: a, n: 1 });
   });
   return grupos.map((g) => (g.n > 1 ? g.nombre + " x" + g.n : g.nombre)).join(", ");
+}
+
+function siguientePaso() {
+  pasoActual = pasoActual >= rutaActual.length - 1 ? 0 : pasoActual + 1;
+  dibujar(rutaActual.slice(0, pasoActual + 1), true);
+  document.getElementById("paso").textContent =
+    pasoActual === 0
+      ? "Estado inicial"
+      : `Paso ${pasoActual} de ${rutaActual.length - 1}: ${accionesActual[pasoActual - 1]}`;
 }
 
 async function ejecutar() {
@@ -118,7 +143,16 @@ async function ejecutar() {
   });
   document.getElementById("cuerpo").innerHTML = filas;
   document.getElementById("secuencia").textContent = texto;
-  dibujar(resultado[0].exito ? resultado[0].ruta : null);
+  if (resultado[0].exito) {
+    rutaActual = resultado[0].ruta;
+    accionesActual = resultado[0].acciones;
+    pasoActual = rutaActual.length - 1;
+    document.getElementById("siguiente").hidden = false;
+    document.getElementById("paso").textContent = "Ruta completa";
+    dibujar(rutaActual);
+  } else {
+    dibujar(null);
+  }
 }
 
 async function iniciar() {
@@ -131,6 +165,7 @@ async function iniciar() {
     document.getElementById(id).addEventListener("input", limpiarResultados)
   );
   document.getElementById("ejecutar").addEventListener("click", ejecutar);
+  document.getElementById("siguiente").addEventListener("click", siguientePaso);
   cargarEscenario();
 }
 
